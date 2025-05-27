@@ -1,7 +1,10 @@
-
-function startARGame() {
+  
+  
   destroyedCount = 0;
   const totalMeteors = 30;
+
+function startARGame() {
+
   foundButton.style.bottom = "540px";
 
   document.getElementById('arScreen').classList.remove('hidden');
