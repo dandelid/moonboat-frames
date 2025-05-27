@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>문보트 행성탐험</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- 메인 탐험 버튼 -->
+  <button id="foundButton" class="hidden">🪐 행성 발견!</button>
+  
+  <!-- 행성 정보 박스 -->
+  <div id="planetInfoBox" class="hidden">
+    <p id="planetInfoText">구간 정보입니다.</p>
+    <button id="captureButton" class="camera-only-button">
+      <span class="camera-icon">📸</span>
+    </button>
+  </div>
+
+  <!-- 행성 도착 UI -->
+  <div id="planetMessage" class="hidden">
+    <img id="planetImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="추가 이미지" />
+    <div id="planetText">행성 메시지</div>
+    <button id="startButton" class="hidden">⛵ 탑승 준비!</button>
+    <img id="startImage" src="./assets/pm1_hello.gif" alt="탑승 준비 이미지" />
+  </div>
+
+  <!-- 보트 애니메이션 -->
+  <img id="movingBoat" src="./assets/문보트.png" alt="문보트 이동중" class="floating hidden" />
+  
+  <!-- 별똥별 미션 버튼 -->
+  <button id="meteorMissionButton" class="hidden">🌠 별똥별 파괴 미션!</button>
+
+  <!-- 탐험 상태 표시 -->
+  <div id="movingStatus" class="floating hidden">
+    <div class="moving-texts">
+      <div class="main-status">탐험 중...</div>
+    </div>
+  </div>
+
+  <!-- 타이틀 및 상태 표시 -->
+  <div id="ui-wrapper">
+    <h1>🚀 문보트 행성탐험</h1>
+    <div id="status">위치 확인 중...</div>
+  </div>
+
+  <!-- 탑승 안내 -->
+  <div id="lifejacketInfo" class="hidden">
+    <p>🦺 <strong>구명조끼 착용 방법</strong></p>
+    <ol>
+      <li>조끼를 입습니다.</li>
+      <li>비상 시 오른쪽 줄을 잡아당깁니다.</li>
+    </ol>
+    <p>🕹️ <strong>문보트 조종법</strong></p>
+    <ol>
+      <li>전원 버튼을 누릅니다.</li>
+      <li>조이스틱으로 조종합니다.</li>
+      <li>조이스틱을 뒤로 당기면 보트가 회전합니다.</li>
+      <li>과속하지 말고 장애물을 피해 이동하세요.</li>
+    </ol>
+    <p>⚠️ <strong>탑승 시 유의사항</strong></p>
+    <ol>
+      <li>탑승 중 자리에서 일어나지 마세요.</li>
+      <li>물에 손을 담그지 않도록 주의하세요.</li>
+      <li>비상시에는 즉시 직원에게 알리세요.</li>
+    </ol>
+  </div>
+
+  <!-- 카메라 및 미리보기 -->
+  <input type="file" id="cameraInput" accept="image/*" capture="environment" class="hidden" />
+  <div id="photoPreview" class="hidden">
+    <h2>📸 내 사진 미리보기</h2>
+    <div id="photoGallery"></div>
+    <button onclick="hidePreview()">닫기</button>
+  </div>
+
+  <button id="previewButton">사진 미리보기</button>
+
+  <!-- 숨김용 캔버스 -->
+  <canvas id="photoCanvas" style="display: none;"></canvas>
+  
+  <!-- AR 카메라 화면 -->
+<div id="arScreen" class="hidden">
+  <video id="cameraFeed" autoplay playsinline></video>
+  <div id="meteorLayer"></div>
+  <button id="arExitButton">나가기</button>
+
+</div>
+
+
+  <!-- 메인 JS 로직 -->
+<script src="script.js"></script>
+<script src="script_ar.js"></script>
+
+
+  <!-- cameraInput 바인딩 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cameraInput = document.getElementById("cameraInput");
+      cameraInput.addEventListener("change", (event) => {
+        alert("✅ 카메라 입력 감지됨");
+        const file = event.target.files[0];
+        if (!file) {
+          alert("❌ 파일 없음");
+        } else {
+          alert("📷 파일 선택됨: " + file.name);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
